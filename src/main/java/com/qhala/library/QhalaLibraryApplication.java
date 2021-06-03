@@ -7,9 +7,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 @SpringBootApplication(scanBasePackages = {"controllers", "models", "services", "repositories", "config", "responses"})
 @EntityScan("models")
 @EnableJpaRepositories(basePackages={"repositories"})
+@EnableSwagger2
 public class QhalaLibraryApplication {
 
 	public static void main(String[] args) {
