@@ -1,11 +1,13 @@
 package controllers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,11 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private ApiResponse apiResponse;
+	
+	@GetMapping("/users")
+	public List<User> getUsers(){
+		return userService.getUsers();
+	}
 	
 	@PostMapping("/users")
 	public HashMap<String, Object> registerUser(@Valid @RequestBody  User user) {

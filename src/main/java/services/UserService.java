@@ -1,6 +1,7 @@
 package services;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -37,6 +38,10 @@ public class UserService {
 		return userRepository.findByEmail(email);		
 	}
 
+	
+	public List<User> getUsers(){
+		return userRepository.findAll();
+	}
 
 	public void registerUser(String firstName, String lastName,String email_id, String phoneNumber, String password) {
 		User user=new User();
