@@ -32,7 +32,6 @@ public class ApiSecurity extends WebSecurityConfigurerAdapter{
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-    	// Disable CSRF (cross site request forgery)
     	 http.csrf().disable();
     	 http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     	 http.authorizeRequests()
@@ -41,8 +40,6 @@ public class ApiSecurity extends WebSecurityConfigurerAdapter{
     	 .antMatchers(HttpMethod.GET, SWAGGER_URL).permitAll()
     	 .antMatchers(HttpMethod.GET, API_DOCS).permitAll()
     	 .anyRequest().authenticated();
-    	 
-    	 //apply jwt token
     	 http.apply(new JwtTokenFilterConfigurer(jwtTokenProvider));
     }
     

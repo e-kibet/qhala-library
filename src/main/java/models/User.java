@@ -21,6 +21,9 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name="users")
 public class User{
@@ -114,6 +117,8 @@ public class User{
 		this.last_login = last_login;
 	}
 
+	@JsonIgnore
+	@JsonProperty(value = "password")
 	public String getPassword() {
 		return password;
 	}

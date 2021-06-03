@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -60,7 +61,7 @@ public class UserService {
 			String pass = user.get().getPassword();
 			if(bCryptPasswordEncoder.matches(password, pass)) {
 				authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
-				String tokenString  = jwtTokenProvider.createToken(email, userRepository.findByEmail(email).get().getRoles());
+				String tokenString  = jwtTokenProvider.createToken(email, userRepository.findByEmail(email).get().getId(), userRepository.findByEmail(email).get().getRoles());
 				System.out.println("token details:::"+tokenString);
 				return apiResponse.apiLoginResponse(true, 200, "login success", user, tokenString);
 			}else {
@@ -69,5 +70,8 @@ public class UserService {
 		}else {
 			return apiResponse.apiResponse(false, 404, "Login failed");
 		}
+	}
+	public Optional<User> findById(int id){
+		return userRepository.findById(id);
 	}
 }
