@@ -2,10 +2,13 @@ package models;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +23,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name="users")
-public class User implements Serializable{
+public class User{
 	@Id
 	  @GeneratedValue(strategy=GenerationType.AUTO)
 	  private Integer id;
@@ -33,9 +36,9 @@ public class User implements Serializable{
 	 @NotEmpty(message = "Last name can not be empty")
 	  private String last_name;
 	 
-	 @Column(name = "email_address", unique = true)
-	 @NotEmpty(message = "Email address can not be empty")
-	  private String email_address;
+	 @Size(min = 4, max = 255, message = "Email address cannot be empty")
+	  @Column(name = "email", unique = true)
+	  private String email;
 	  
 	 @Column(name = "msisdn", unique = true)
 	 @NotEmpty(message = "Phone number can not be empty")
@@ -45,6 +48,9 @@ public class User implements Serializable{
 	  
 	 @Column(name = "last_login")
 	  private String last_login;
+	 
+	 @ElementCollection(fetch = FetchType.EAGER)
+	  List<Role> roles;
 	  
 	 @Column(name = "password")
 	 @NotEmpty(message = "Password can not be empty")
@@ -84,12 +90,12 @@ public class User implements Serializable{
 		this.last_name = last_name;
 	}
 
-	public String getEmail_address() {
-		return email_address;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEmail_address(String email_address) {
-		this.email_address = email_address;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getMsisdn() {
@@ -132,7 +138,12 @@ public class User implements Serializable{
 		this.updated_at = updated_at;
 	}
 	  
-	 
-	 
+	public List<Role> getRoles() {
+	    return roles;
+	  }
+
+	  public void setRoles(List<Role> roles) {
+	    this.roles = roles;
+	  }
 	  
 }
