@@ -30,10 +30,10 @@ public class SwaggerConfig {
 	}
 
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("JavaInUse API")
-				.description("JavaInUse API reference for developers")
-				.termsOfServiceUrl("http://javainuse.com")
-				.contact("javainuse@gmail.com").license("JavaInUse License")
-				.licenseUrl("javainuse@gmail.com").version("1.0").build();
+		return new ApiInfoBuilder().title("QhalaLibrary API")
+				.description("QhalaLibrary API reference for developers")
+				.termsOfServiceUrl("http://qhala.com")
+				.contact("ekibet@qhala.com").license("Qhala License")
+				.licenseUrl("ekibet@qhala.com").version("1.0").build();
 	}
 }

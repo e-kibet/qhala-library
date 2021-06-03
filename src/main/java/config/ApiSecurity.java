@@ -19,7 +19,6 @@ public class ApiSecurity extends WebSecurityConfigurerAdapter{
     private final UserDetailsService userDetailsService;
     public static final String SIGN_UP_URL = "/api/v1/users";
     public static final String LOGIN_URL = "/api/v1/login";
-    public static final String SWAGGER_URL = "/swagger-ui.html";
     public static final String API_DOCS = "/api-docs";
     
     @Autowired
@@ -37,8 +36,8 @@ public class ApiSecurity extends WebSecurityConfigurerAdapter{
     	 http.authorizeRequests()
     	 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
     	 .antMatchers(HttpMethod.POST, LOGIN_URL).permitAll()
-    	 .antMatchers(HttpMethod.GET, SWAGGER_URL).permitAll()
     	 .antMatchers(HttpMethod.GET, API_DOCS).permitAll()
+    	 .antMatchers(HttpMethod.GET, "/v2/api-docs", "/swagger-resources/**", "/webjars/**", "/swagger-ui.html").permitAll()
     	 .anyRequest().authenticated();
     	 http.apply(new JwtTokenFilterConfigurer(jwtTokenProvider));
     }

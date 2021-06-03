@@ -1,14 +1,18 @@
-Qhala Library
+QHALALIBRARY API
 
 These is the qhala library backend services for users to register & login and view their videos and books.
 The Restful services are well protected and routed to the specific JPA modules.
 
-Screens
+SCREENS
 <<POSTMAN REQUESTS TO BE INCLUDED LATER || ALTERNATIVELY SWAGGER DOCUMENTATION URL>>
 
 
+SWAGGER DOCS
+http://localhost:8080/swagger-ui.html
 
-Libraries used
+
+
+MAVEN LIBRARIES
 -Spring Boot 1.5.1.RELEASE
 -Custom: Exceptions, File IO, Rest Authentication
 -Spring Boot Test
@@ -31,6 +35,3 @@ Both MySQL database and war file to be deployed in the docker container
 
 DEVELOPERS
 evans kiptarus kibet(evanskibet114@gmail.com)
-
-License
-A short snippet describing the license (MIT, Apache etc)
