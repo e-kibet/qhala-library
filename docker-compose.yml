@@ -1,0 +1,31 @@
+version: "3"
+networks:
+  proxynet:
+    external:
+      name: qhala.network
+services:
+  qhala_api:
+    build: .
+    image: qhala_api
+    container_name: qhala_api
+    restart: unless-stopped
+    networks:
+      - proxynet
+    ports:
+      - "8080:8080"
+  qhala_db:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    container_name: qhala_db
+    volumes:
+      - ./docker/db:/docker-entrypoint-initdb.d
+    networks:
+      - proxynet
+    ports:
+      - "3907:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "S8JhKS5VvmJzFtQc"
+      MYSQL_DATABASE: "qhala_db"
+      MYSQL_USER: "qhala_api"
+      MYSQL_PASSWORD: "S8JhKS5VvmJzFtQc"
