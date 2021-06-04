@@ -25,15 +25,17 @@ public class SwaggerConfig {
 				.apiInfo(apiInfo()).select().paths(postPaths()).build();
 	}
 
+	@SuppressWarnings("unchecked")
 	private Predicate<String> postPaths() {
 		return or(regex("/api/v1.*"));
 	}
 
+	@SuppressWarnings("deprecation")
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder().title("QhalaLibrary API")
 				.description("QhalaLibrary API reference for developers")
 				.termsOfServiceUrl("http://qhala.com")
 				.contact("ekibet@qhala.com").license("Qhala License")
-				.licenseUrl("ekibet@qhala.com").version("1.0").build();
+				.licenseUrl("ekibet@qhala.com").version("1.1").build();
 	}
 }

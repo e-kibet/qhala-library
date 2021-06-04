@@ -1,4 +1,4 @@
-package config;
+package enums;
 
 public enum Status {
     SUCCESS,

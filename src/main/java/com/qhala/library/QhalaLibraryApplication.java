@@ -14,11 +14,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableJpaRepositories(basePackages={"repositories"})
 @EnableSwagger2
 public class QhalaLibraryApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(QhalaLibraryApplication.class, args);
 	}
-	
 	@Bean
 	 public BCryptPasswordEncoder bCryptPasswordEncoder() {
 	  return new BCryptPasswordEncoder();
