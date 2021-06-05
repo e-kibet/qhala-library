@@ -14,7 +14,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableJpaRepositories(basePackages={"repositories"})
 @EnableSwagger2
 public class QhalaLibraryApplication {
+
+
+	  
 	public static void main(String[] args) {
+		System.setProperty("server.servlet.context-path", "/api/v1");
 		SpringApplication.run(QhalaLibraryApplication.class, args);
 	}
 	@Bean

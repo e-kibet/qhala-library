@@ -47,7 +47,6 @@ public class UserController {
 			if(emailOptional.isPresent()) {
 				return apiResponse.apiResponse(false, 404, "Email addesss is already taken");
 			}else {
-				//TODO IMPLEMENT THE EMAIL AND PHONE VALIDATIONS
 				userService.registerUser(user.getFirst_name(),user.getLast_name(),user.getEmail(),user.getMsisdn(),user.getPassword()); 
 				return apiResponse.apiResponse(true, 200, "success");
 			}

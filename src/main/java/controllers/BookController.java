@@ -22,7 +22,7 @@ import responses.ApiResponse;
 import services.BookService;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/books")
 public class BookController {
 	
 	@Autowired
@@ -30,18 +30,18 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 	
-	@PostMapping("/books")
+	@PostMapping("/")
 	public HashMap<String, Object> createBook(@Valid @RequestBody  Book book) {
 		bookService.saveBook(book);
 		return apiResponse.apiResponse(true, 200, "Book has been created");
 	}
 	
-	@GetMapping("/books")
+	@GetMapping("/")
 	public ResponseEntity<Map<String, Object>> getAllBooks(@RequestParam(defaultValue = "0") int page,
 	        @RequestParam(defaultValue = "10") int size){
 		return bookService.getAllBooks(page, size);
 	}
-	@GetMapping("/books/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Book> getBookByID(@PathVariable Integer id) {
 	    try {
 	        Book product = bookService.getBookById(id);

@@ -2,7 +2,9 @@ package models;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -36,6 +39,7 @@ public class User{
 	 
 	 @Column(name = "last_name", updatable = true, nullable = false)
 	 @NotEmpty(message = "Last name can not be empty")
+	 @Size(min=2, message="Name should have atleast 2 characters")
 	  private String last_name;
 	 
 	 @Size(min = 4, max = 255, message = "Email address cannot be empty")
@@ -67,6 +71,10 @@ public class User{
 	 @Temporal(TemporalType.TIMESTAMP)
 	 @CreationTimestamp
 	  private Date updated_at;
+	 
+	 @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
+	            cascade = CascadeType.ALL)
+	 private Set<UserLibrary> userLibrary;
 
 	public Integer getId() {
 		return id;

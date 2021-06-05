@@ -47,7 +47,6 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
-			<!-- JSON Web Token Support -->
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
 			<version>0.9.1</version>
@@ -64,6 +63,7 @@
 			<version>2.6.1</version>
 			<scope>compile</scope>
 		</dependency>
+		
 	</dependencies>
 
 	<build>

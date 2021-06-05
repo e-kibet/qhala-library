@@ -4,9 +4,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import enums.ContentType;
@@ -25,9 +28,6 @@ public class UserLibrary {
 	 
 	 @Column(name = "content_id")
 	  private String content_id;
-	 
-	 @Column(name = "user_id")
-	  private String user_id;
 	  
 	  
 	 @Column(name = "created_at")
@@ -35,6 +35,10 @@ public class UserLibrary {
 	  
 	 @Column(name = "updated_at")
 	  private String updated_at;
+	 
+	 @ManyToOne(fetch = FetchType.LAZY, optional = false)
+	 @JoinColumn(name = "user_id", nullable = false)
+	 private User user;
 
 	public Integer getId() {
 		return id;
@@ -60,13 +64,6 @@ public class UserLibrary {
 		this.content_id = content_id;
 	}
 
-	public String getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
 
 	public String getCreated_at() {
 		return created_at;
