@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="books")
@@ -15,9 +16,11 @@ public class Book {
 	  private Integer id;
 
 	 @Column(name = "book_name")
+	 @NotNull
 	  private String book_name;
 	 
 	 @Column(name = "author")
+	 @NotNull
 	  private String author;
 	 
 	 @Column(name = "published_date")
