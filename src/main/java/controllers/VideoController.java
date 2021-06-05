@@ -29,10 +29,10 @@ public class VideoController {
 	@PostMapping("/videos")
 	public HashMap<String, Object> createBook(@Valid @RequestBody  Video video) {
 		videoService.saveVideo(video);
-		return apiResponse.apiResponse(true, 200, "Book has been created");
+		return apiResponse.apiResponse(true, 200, "Video has been created");
 	}
 	
-	@GetMapping(value = "/videos")  
+	@GetMapping(value = "/videos")
 	public List<Video> getVideos(){
 		return videoService.getVideos();
 	}

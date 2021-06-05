@@ -24,7 +24,6 @@ import services.UserService;
 @RestController
 @RequestMapping("/api/v1")
 public class UserController {
-	
 	@Autowired
 	private UserService userService;
 	@Autowired

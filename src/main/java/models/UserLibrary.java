@@ -1,18 +1,12 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 import enums.ContentType;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.util.Date;
 
 @Entity
 @Table(name="user_library")
@@ -20,24 +14,29 @@ public class UserLibrary {
 	@Id
 	  @GeneratedValue(strategy=GenerationType.AUTO)
 	  private Integer id;
-	
-	
+
 	 @Enumerated(value=EnumType.STRING)
 	 @Column(name = "content_type")
+	 @NotEmpty(message = "Content Type is required")
 	  private ContentType content_type;
 	 
 	 @Column(name = "content_id")
+	 @NotEmpty(message =  "Content ID is required")
 	  private String content_id;
 	  
-	  
 	 @Column(name = "created_at")
-	  private String created_at;
+	 @Temporal(TemporalType.TIMESTAMP)
+	 @CreationTimestamp
+	  private Date created_at;
 	  
 	 @Column(name = "updated_at")
-	  private String updated_at;
+	 @Temporal(TemporalType.TIMESTAMP)
+	 @CreationTimestamp
+	  private Date updated_at;
 	 
-	 @ManyToOne(fetch = FetchType.LAZY, optional = false)
-	 @JoinColumn(name = "user_id", nullable = false)
+	 @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.PERSIST)
+	 @NotEmpty(message = "User ID is required")
+	 @JoinColumn(name = "user_id", nullable = true)
 	 private User user;
 
 	public Integer getId() {
@@ -65,19 +64,19 @@ public class UserLibrary {
 	}
 
 
-	public String getCreated_at() {
+	public Date getCreated_at() {
 		return created_at;
 	}
 
-	public void setCreated_at(String created_at) {
+	public void setCreated_at(Date created_at) {
 		this.created_at = created_at;
 	}
 
-	public String getUpdated_at() {
+	public Date getUpdated_at() {
 		return updated_at;
 	}
 
-	public void setUpdated_at(String updated_at) {
+	public void setUpdated_at(Date updated_at) {
 		this.updated_at = updated_at;
 	}
 	 

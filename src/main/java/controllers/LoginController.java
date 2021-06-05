@@ -2,21 +2,17 @@ package controllers;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import models.UserLogin;
 import services.UserService;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/api/v1")
 public class LoginController {
 	@Autowired
 	private UserService userService;
-	
-	@RequestMapping(value="/", method=RequestMethod.POST)
+
+	@PostMapping("/login")
 	public  HashMap<String, Object> loginUser(@RequestBody UserLogin userLogin, HttpServletResponse res) {
 	  return userService.loginUser(userLogin.getEmail_address(), userLogin.getPassword());
 	}
