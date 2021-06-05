@@ -2,8 +2,10 @@ package controllers;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import models.User;
 import responses.ApiResponse;
@@ -28,8 +31,10 @@ public class UserController {
 	private ApiResponse apiResponse;
 	
 	@GetMapping("/users")
-	public List<User> getUsers(){
-		return userService.getUsers();
+	public ResponseEntity<Map<String, Object>> getUsers(HttpServletResponse res, @RequestParam(defaultValue = "0") int page,
+	        @RequestParam(defaultValue = "10") int size){
+		res.setStatus(HttpServletResponse.SC_ACCEPTED);
+		return userService.getUsers(page, size);
 	}
 	
 	@PostMapping("/users")

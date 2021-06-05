@@ -1,6 +1,8 @@
 package controllers;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +19,7 @@ public class LoginController {
 	private UserService userService;
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public  HashMap<String, Object> loginUser(@RequestBody UserLogin userLogin) {
+	public  HashMap<String, Object> loginUser(@RequestBody UserLogin userLogin, HttpServletResponse res) {
 	  return userService.loginUser(userLogin.getEmail_address(), userLogin.getPassword());
 	}
 

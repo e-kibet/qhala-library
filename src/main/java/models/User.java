@@ -1,9 +1,7 @@
 package models;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -28,22 +26,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Table(name="users")
 public class User{
 	@Id
-	  @GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id", updatable = false)
 	  private Integer id;
 
-	 @Column(name = "first_name")
+	 @Column(name = "first_name", updatable = true, nullable = false)
 	 @NotEmpty(message = "First name can not be empty")
 	  private String first_name;
 	 
-	 @Column(name = "last_name")
+	 @Column(name = "last_name", updatable = true, nullable = false)
 	 @NotEmpty(message = "Last name can not be empty")
 	  private String last_name;
 	 
 	 @Size(min = 4, max = 255, message = "Email address cannot be empty")
-	  @Column(name = "email", unique = true)
+	  @Column(name = "email", unique = true, nullable = false, updatable = false)
 	  private String email;
 	  
-	 @Column(name = "msisdn", unique = true)
+	 @Column(name = "msisdn", unique = true, nullable = false, updatable = false)
 	 @NotEmpty(message = "Phone number can not be empty")
 	 @Size(min=10, max=12)
 	 @Pattern(regexp = "^(\\+){0,1}(254){0,1}(70|71|72|79)(\\d{7})|(254){0,3}(740|741|742|743|745|746|748|757|758|759|768|769|110|111)(\\d{6})$")
